@@ -1,0 +1,35 @@
+CREATE TABLE `consulta` (
+  `idConsulta` int NOT NULL,
+  `dt_consulta` datetime NOT NULL,
+  `Paciente_idPaciente` int NOT NULL,
+  `ReceitaMedica_idReceitaMedica` int NOT NULL,
+  `Medico_idMedico` int NOT NULL,
+  PRIMARY KEY (`idConsulta`),
+  KEY `Medico_idMedico` (`Medico_idMedico`),
+  KEY `Paciente_idPaciente` (`Paciente_idPaciente`),
+  KEY `ReceitaMedica_idReceitaMedica` (`ReceitaMedica_idReceitaMedica`),
+  CONSTRAINT `Medico_idMedico` FOREIGN KEY (`Medico_idMedico`) REFERENCES `medico` (`idMedico`),
+  CONSTRAINT `Paciente_idPaciente` FOREIGN KEY (`Paciente_idPaciente`) REFERENCES `paciente` (`idPaciente`),
+  CONSTRAINT `ReceitaMedica_idReceitaMedica` FOREIGN KEY (`ReceitaMedica_idReceitaMedica`) REFERENCES `receitamedica` (`idReceitaMedica`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `medico` (
+  `idMedico` int NOT NULL,
+  `nmMedico` varchar(45) DEFAULT NULL,
+  `telefoneMedico` varchar(9) DEFAULT NULL,
+  PRIMARY KEY (`idMedico`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `paciente` (
+  `idPaciente` int NOT NULL,
+  `nmPaciente` varchar(45) NOT NULL,
+  `telefonePaciente` varchar(9) NOT NULL,
+  `convenio` varchar(45) NOT NULL,
+  PRIMARY KEY (`idPaciente`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `receitamedica` (
+  `idReceitaMedica` int NOT NULL,
+  `descricao` varchar(500) NOT NULL,
+  PRIMARY KEY (`idReceitaMedica`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
